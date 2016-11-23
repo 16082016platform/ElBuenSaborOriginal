@@ -3,63 +3,24 @@ var isInit = true,
     helpers = require('../../utils/widgets/helper'),
     navigationProperty = require('../../utils/widgets/navigation-property'),
 
-    service = require('./categorias-service'),
-    servicePlatos = require('../platos/platos-service'),
+    service = require('./platos-service'),
     // additional requires
 
-    viewModel = require('./categorias-view-model');
+    viewModel = require('./platos-view-model');
 
 function onListViewItemTap(args) {
     var itemData = viewModel.get('listItems')[args.index];
 
     helpers.navigate({
-        moduleName: 'components/platos/platos',
-        context: {
-            filter: {
-                categoria: itemData.details.Id
-            }
-        }
+        moduleName: 'components/platos/itemDetails/itemDetails',
+        context: itemData.details
     });
 }
 exports.onListViewItemTap = onListViewItemTap;
 
-function cargarPlatos(args) {
-
-    function _fetchData() {
-        return servicePlatos.getAllRecords();
-    };
-
-    _fetchData()
-        .then(function (result) {
-            var itemsList = [];
-
-            result.forEach(function (item) {
-
-                flattenLocationProperties(item);
-
-                itemsList.push({
-
-                    header: item.nombre,
-
-                    // singleItem properties
-                    details: item
-                });
-            });
-
-            viewModel.set('listPlatos', itemsList);
-            viewModel.set('isLoading', false);
-
-            alert(JSON.stringify(itemsList));
-        })
-        .catch(function onCatch() {
-            viewModel.set('isLoading', false);
-        });
-}
-exports.cargarPlatos = cargarPlatos;
-
 function flattenLocationProperties(dataItem) {
     var propName, propValue,
-        isLocation = function (value) {
+        isLocation = function(value) {
             return propValue && typeof propValue === 'object' &&
                 propValue.longitude && propValue.latitude;
         };
@@ -90,6 +51,7 @@ function pageLoaded(args) {
         var context = page.navigationContext;
 
         if (context && context.filter) {
+
             return service.getAllRecords(context.filter);
         }
 
@@ -97,10 +59,10 @@ function pageLoaded(args) {
     };
 
     _fetchData()
-        .then(function (result) {
+        .then(function(result) {
             var itemsList = [];
 
-            result.forEach(function (item) {
+            result.forEach(function(item) {
 
                 flattenLocationProperties(item);
 
@@ -121,9 +83,6 @@ function pageLoaded(args) {
         });
     // additional pageLoaded
 
-    //   35d3eb60-ac2f-11e6-bbe3-2b75d1374b2d
-    cargarPlatos();
-
     if (isInit) {
         isInit = false;
 
@@ -131,8 +90,8 @@ function pageLoaded(args) {
     }
 }
 
-// START_CUSTOM_CODE_categorias
+// START_CUSTOM_CODE_platos
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_categorias
+// END_CUSTOM_CODE_platos
 exports.pageLoaded = pageLoaded;

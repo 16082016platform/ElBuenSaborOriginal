@@ -5,16 +5,16 @@ var ViewModel,
 
 ViewModel = new Observable({
 
-    pageTitle: 'Categorías',
+    pageTitle: 'Platos',
 
     isLoading: false,
     listItems: [],
     // additional properties
-    listPlatos: [],
+
 });
 
-// START_CUSTOM_CODE_categorias
+// START_CUSTOM_CODE_platos
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_categorias
+// END_CUSTOM_CODE_platos
 module.exports = ViewModel;

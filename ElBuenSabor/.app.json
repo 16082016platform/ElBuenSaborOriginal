@@ -43,7 +43,31 @@
           "detailExtraFields": [],
           "addScreenExtraFields": [],
           "editScreenExtraFields": [],
-          "components": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "nombre",
+                  "title": "Heading",
+                  "inputType": "heading",
+                  "headingSize": "h1",
+                  "dataBindingOptional": "nombre"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "plato",
+                  "title": "plato",
+                  "inputType": "textBlock",
+                  "wideFieldTitlePosition": "top",
+                  "dataBindingOptional": "platos"
+                }
+              ],
+              "name": "editableListForm12",
+              "formType": "detail"
+            }
+          ],
           "name": "categoriasModel",
           "dataProvider": "elBuenSabor",
           "collection": "categorias",
@@ -54,8 +78,12 @@
           "deleteItemButton": false,
           "pullToRefresh": false,
           "endlessScroll": false,
+          "itemActionView": "platos",
+          "itemActionPrimaryKey": "Id",
+          "itemActionSecondaryKey": "categoria",
           "detailHeaderFieldSource": "static",
-          "detailHeaderFieldValue": "Detail"
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "nombre"
         }
       ],
       "title": "Categorías",
@@ -108,6 +136,64 @@
       "title": "Perfil",
       "addToNavigation": true,
       "icon": "contacts"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "platos",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSorting": false,
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "dia",
+                  "title": "Heading",
+                  "inputType": "heading",
+                  "headingSize": "h1",
+                  "dataBindingOptional": "dia"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "precio",
+                  "title": "Heading",
+                  "inputType": "heading",
+                  "headingSize": "h5",
+                  "dataBindingOptional": "precio"
+                }
+              ],
+              "name": "editableListForm4",
+              "formType": "detail"
+            }
+          ],
+          "name": "platosModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "platos",
+          "headerField": "nombre",
+          "isMapView": false,
+          "addItemForm": false,
+          "editItemForm": false,
+          "deleteItemButton": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "nombre",
+          "detailDescriptionField": "descripcion",
+          "detailImageField": "imagen"
+        }
+      ],
+      "title": "Platos",
+      "addToNavigation": true,
+      "icon": "bookmarks"
     }
   ],
   "dataProviders": [

@@ -16,6 +16,10 @@ menuItems = [{
     "moduleName": "components/users/users",
     "icon": "\ue0e4"
 }, {
+    "title": "Platos",
+    "moduleName": "components/platos/platos",
+    "icon": "\ue204"
+}, {
     "title": "Salir",
     "moduleName": "components/homeView/homeView",
     "icon": "\ue1ff",
