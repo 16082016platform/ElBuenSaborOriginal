@@ -10,23 +10,35 @@ var isInit = true,
     viewModel = require('./categorias-view-model');
 
 function onListViewItemTap(args) {
-    var itemData = viewModel.get('listItems')[args.index];
+    // var itemData = viewModel.get('listItems')[args.index];
+
+    // helpers.navigate({
+    //     moduleName: 'components/platos/platos',
+    //     context: {
+    //         filter: {
+    //             categoria: itemData.details.Id
+    //         }
+    //     }
+    // });
+
+    var itemData = viewModel.get('listPlatos')[args.index];
 
     helpers.navigate({
-        moduleName: 'components/platos/platos',
-        context: {
-            filter: {
-                categoria: itemData.details.Id
-            }
-        }
+        moduleName: 'components/platos/itemDetails/itemDetails',
+        context: itemData.details
     });
 }
 exports.onListViewItemTap = onListViewItemTap;
 
-function cargarPlatos(args) {
+function cargarPlatos() {
+
+    viewModel.set('isLoading', true);
+    viewModel.set('listPlatos', []);
 
     function _fetchData() {
-        return servicePlatos.getAllRecords();
+        return servicePlatos.getAllRecords({
+            categoria: viewModel.get('categoriaActiva')
+        });
     };
 
     _fetchData()
@@ -48,8 +60,6 @@ function cargarPlatos(args) {
 
             viewModel.set('listPlatos', itemsList);
             viewModel.set('isLoading', false);
-
-            alert(JSON.stringify(itemsList));
         })
         .catch(function onCatch() {
             viewModel.set('isLoading', false);
@@ -99,6 +109,7 @@ function pageLoaded(args) {
     _fetchData()
         .then(function (result) {
             var itemsList = [];
+            var width = page.getMeasuredWidth() / result.length;
 
             result.forEach(function (item) {
 
@@ -109,9 +120,16 @@ function pageLoaded(args) {
                     header: item.nombre,
 
                     // singleItem properties
-                    details: item
+                    details: item,
+
+                    width: width,
+
+                    activo: false
                 });
             });
+
+            itemsList[0].activo = true;
+            viewModel.set('categoriaActiva', itemsList[0].details.Id);
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);
@@ -122,12 +140,18 @@ function pageLoaded(args) {
     // additional pageLoaded
 
     //   35d3eb60-ac2f-11e6-bbe3-2b75d1374b2d
-    cargarPlatos();
+
 
     if (isInit) {
         isInit = false;
 
         // additional pageInit
+
+        var timer = require("timer");
+        let id = timer.setInterval(() => {
+            cargarPlatos();
+            timer.clearInterval(id);
+        }, 1500);
     }
 }
 

@@ -6,8 +6,16 @@
     <StackLayout>
 
         <GridLayout rows="auto, *">
+            <Repeater row="0" items="{{ listItems }}" cssClass="encabezados">
+                <Repeater.itemsLayout>
+                    <StackLayout orientation="horizontal" />
+                </Repeater.itemsLayout>
+                <Repeater.itemTemplate>
+                    <Button text="{{ details.nombre }}" id="{{ 'categoria' + details.Id }}" tap="cambioCategoria" width="{{ width }}" cssClass="{{ activo? 'categoriaActiva' : '' }}" isEnabled="{{ !activo }}" />
+                </Repeater.itemTemplate>
+            </Repeater>
 
-            <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap">
+            <ListView row="1" items="{{ listPlatos }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>
                     <StackLayout>
                         <GridLayout columns="*" cssClass="padded-label">

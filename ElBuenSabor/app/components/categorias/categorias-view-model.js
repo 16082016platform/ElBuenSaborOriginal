@@ -11,6 +11,7 @@ ViewModel = new Observable({
     listItems: [],
     // additional properties
     listPlatos: [],
+    categoriaActiva: '',
 });
 
 // START_CUSTOM_CODE_categorias
