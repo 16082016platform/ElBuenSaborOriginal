@@ -40,13 +40,13 @@
 
             
             <!-- will be seen as a footer -->
-            <GridLayout row="2">
+            <GridLayout row="1">
                 <StackLayout tap="confirmarPedidos">
                     <Label text="CONTINUAR"/>
                     <Label text="Delívery en 30 min aprox."/>
                 </StackLayout>
             </GridLayout>
-            <ActivityIndicator row="1" busy="{{ isLoading }}" />
+            <ActivityIndicator row="2" busy="{{ isLoading }}" />
         </GridLayout>
         <!-- additional view content -->
 

@@ -20,6 +20,10 @@ menuItems = [{
     "moduleName": "components/platos/platos",
     "icon": "\ue204"
 }, {
+    "title": "Historial",
+    "moduleName": "components/historial/historial",
+    "icon": "\ue205"
+}, {
     "title": "Salir",
     "moduleName": "components/homeView/homeView",
     "icon": "\ue1ff",

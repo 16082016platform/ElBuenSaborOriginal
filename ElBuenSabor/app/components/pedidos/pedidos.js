@@ -84,20 +84,18 @@ exports.confirmarPedidos = function confirmarPedidos() {
         .then(function (result) {
             viewModel.set('isLoading', false);
             var data = dataService.data('pedidos');
-            data.save({
-
-                codigo: result.length + 1,
-                total: viewModel.get('total'),
-                cantidad: viewModel.get('cantidad'),
-                estado: 'pendiente',
-                pedido: viewModel.get('listPedidos'),
-
-                // save properties
-
-            })
-                .then(onRequestSuccess.bind(this))
-                .catch(onRequestFail.bind(this));
-            viewModel.set('isLoading', false);
+            if (viewModel.get('cantidad') !== 0) {
+                data.save({
+                    codigo: result.length + 1,
+                    total: viewModel.get('total'),
+                    cantidad: viewModel.get('cantidad'),
+                    estado: 'pendiente',
+                    pedido: viewModel.get('listPedidos'),
+                    // save properties
+                })
+                    .then(onRequestSuccess.bind(this))
+                    .catch(onRequestFail.bind(this));
+            }
         })
         .catch(function onCatch() {
             viewModel.set('isLoading', false);
