@@ -40,9 +40,7 @@
             <GridLayout row="2" cssClass="footer">
                 <StackLayout tap="buttonForwardTap">
                     <Label id="mensajePedidos" text="El carrito entá vacío"/>
-                    <Label  id="totalPedidos" text=" 0"/>
-                    <Label cssClass="flaticon-breakfast-delivery-service"></Label>
-                    <Label cssClass="flaticon-breakfast-delivery-service" ></Label>
+                    <Label  id="totalPedidos" text="{{ total }}"/>
                 </StackLayout>
             </GridLayout>
         </GridLayout>

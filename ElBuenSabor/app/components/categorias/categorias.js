@@ -70,6 +70,8 @@ function cargarPlatos(idCategoria) {
                     categoria: item.categoria,
 
                     cantidad: 0,
+
+                    precio: item.precio,
                 });
             });
             viewModel.set('listPlatos', itemsList);
