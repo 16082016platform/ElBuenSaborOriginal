@@ -194,6 +194,37 @@
       "title": "Platos",
       "addToNavigation": true,
       "icon": "bookmarks"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "historial",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSorting": false,
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [],
+          "name": "historialModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "pedidos",
+          "headerField": "codigo",
+          "isMapView": false,
+          "addItemForm": false,
+          "editItemForm": false,
+          "deleteItemButton": false,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail"
+        }
+      ],
+      "title": "Historial",
+      "addToNavigation": true,
+      "icon": "recents"
     }
   ],
   "dataProviders": [

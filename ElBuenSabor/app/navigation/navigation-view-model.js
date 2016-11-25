@@ -22,7 +22,7 @@ menuItems = [{
 }, {
     "title": "Historial",
     "moduleName": "components/historial/historial",
-    "icon": "\ue205"
+    "icon": "\ue0d2"
 }, {
     "title": "Salir",
     "moduleName": "components/homeView/homeView",
