@@ -4,7 +4,7 @@
     </Page.actionBar>-->
 
     <Page.actionBar>
-        <ActionBar title="Item layouts" automationText="ActionBar">
+        <ActionBar title="Categorías" automationText="ActionBar">
             <NavigationButton icon="res://ic_back" tap="goBack" automationText="GoBack" />
         </ActionBar>
     </Page.actionBar>
@@ -35,14 +35,14 @@
                     </StackLayout>
                 </ListView.itemTemplate>
             </ListView>
-            <ActivityIndicator row="1" busy="{{ isLoading }}" />
             <!-- will be seen as a footer -->
             <GridLayout row="2" cssClass="footer">
-                <StackLayout tap="buttonForwardTap">
-                    <Label id="mensajePedidos" text="El carrito entá vacío"/>
-                    <Label  id="totalPedidos" text="{{ total }}"/>
+                <StackLayout tap="goToPedidos">
+                    <Label id="mensajePedidos" text="{{ total > 0 ? 'TOTAL: S/ ' + total : 'El carrito entá vacío'  }}"/>
+                    <Label  id="totalPedidos" text="{{ cantidad }}"/>
                 </StackLayout>
             </GridLayout>
+            <ActivityIndicator row="1" busy="{{ isLoading }}" />
         </GridLayout>
         <!-- additional view content -->
 

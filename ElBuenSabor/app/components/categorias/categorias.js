@@ -7,6 +7,8 @@ var isInit = true,
     servicePlatos = require('../platos/platos-service'),
     // additional requires
 
+    dialogs = require('ui/dialogs'),
+
     viewModel = require('./categorias-view-model');
 
 function onListViewItemTap(args) {
@@ -26,6 +28,7 @@ function onListViewItemTap(args) {
     viewModel.aumentarCantidad(itemData);
 
     return;
+
     var itemData = viewModel.get('listPlatos')[args.index];
 
     helpers.navigate({
@@ -182,3 +185,28 @@ function cambiarCategoria(args) {
     viewModel.cambiarCategoria(page.idCategoria);
 }
 exports.cambiarCategoria = cambiarCategoria;
+
+function goToPedidos(args) {
+    if (viewModel.get('listPedidos').length == 0) {
+        dialogs.alert({
+            message: "El carrito está vacio",
+            okButtonText: "OK"
+        })
+        return;
+    }
+
+    helpers.navigate({
+        moduleName: 'components/pedidos/pedidos',
+        transitioniOS: {
+            name: "curl",
+            duration: 1000,
+            curve: "easeIn"
+        },
+        transitionAndroid: {
+            name: "explode",
+            duration: 1000,
+            curve: "easeOut"
+        }
+    });
+}
+exports.goToPedidos = goToPedidos;

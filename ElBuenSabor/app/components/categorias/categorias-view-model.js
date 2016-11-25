@@ -11,7 +11,9 @@ ViewModel = new Observable({
     listItems: [],
     // additional properties
     listPlatos: [],
+    listPedidos: [],
     total: 0,
+    cantidad: 0,
 
     cambiarCategoria: function (idCategoria) {
         var listItems = [];
@@ -33,16 +35,23 @@ ViewModel = new Observable({
         this.set('listPlatos', listPlatos);
     },
     aumentarCantidad: function (itemPlato) {
-        var listPlatos = [];
-        var total = 0
+        var listPlatos = [], total = 0, cantidad = 0;
+        this.set('listPedidos', []);
+
         for (var i = 0; i < this.listPlatos.length; ++i) {
             if (this.listPlatos[i].details.Id == itemPlato.details.Id) {
                 this.listPlatos[i].cantidad += 1;
             }
+            if (this.listPlatos[i].cantidad > 0) {
+                this.listPedidos.push(this.listPlatos[i]);
+            }
+            cantidad += this.listPlatos[i].cantidad;
             total += parseFloat(this.listPlatos[i].precio) * this.listPlatos[i].cantidad;
+
             listPlatos.push(this.listPlatos[i]);
         }
         this.set('listPlatos', listPlatos);
+        this.set('cantidad', cantidad);
         this.set('total', total);
     },
     disminuirCantidad: function (itemPlato) {
@@ -60,3 +69,5 @@ ViewModel = new Observable({
 
 // END_CUSTOM_CODE_categorias
 module.exports = ViewModel;
+
+

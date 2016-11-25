@@ -1,0 +1,58 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="homeViewScreen" cssClass="screen">
+    <!--<Page.actionBar>
+        <widgets:action-bar />
+    </Page.actionBar>-->
+
+    <!-- additional view content -->
+    <!-- START_CUSTOM_CODE_pedidos -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_pedidos -->
+
+    <Page.actionBar>
+        <ActionBar title="Pedidos" automationText="ActionBar">
+            <NavigationButton icon="res://ic_back" tap="goBack" automationText="GoBack" />
+        </ActionBar>
+    </Page.actionBar>
+
+    <StackLayout>
+
+        <GridLayout rows="*, auto, auto">
+            <ListView row="0" items="{{ listPedidos }}" itemTap="onListViewItemTap">
+                <ListView.itemTemplate>
+                    <StackLayout>
+                        <GridLayout columns="*"  cssClass="padded-label">
+
+                            <StackLayout cssClass="padded-label-stack">
+                                <Label text="{{ header + cantidad }}" cssClass="title-label" textWrap="true" />
+                                <Label text="{{ 'S/ ' + precio }}" cssClass="title-label" textWrap="true" />
+                            </StackLayout>
+
+                        </GridLayout>
+                        <!-- additional view content -->
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <StackLayout row="1" horizontalAlignment="right">
+                <Label text="{{ total > 0 ? 'TOTAL S/ ' + total : 'El carrito entá vacío'  }}"/>
+            </StackLayout>
+
+            
+            <!-- will be seen as a footer -->
+            <GridLayout row="2">
+                <StackLayout tap="goToPedidos">
+                    <Label text="CONTINUAR"/>
+                    <Label text="Delívery en 30 min aprox."/>
+                </StackLayout>
+            </GridLayout>
+            <ActivityIndicator row="1" busy="{{ isLoading }}" />
+        </GridLayout>
+        <!-- additional view content -->
+
+        <!-- START_CUSTOM_CODE_categorias -->
+        <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+        <!-- END_CUSTOM_CODE_categorias -->
+    </StackLayout>
+</Page>
