@@ -41,7 +41,7 @@
             
             <!-- will be seen as a footer -->
             <GridLayout row="2">
-                <StackLayout tap="goToPedidos">
+                <StackLayout tap="confirmarPedidos">
                     <Label text="CONTINUAR"/>
                     <Label text="Delívery en 30 min aprox."/>
                 </StackLayout>

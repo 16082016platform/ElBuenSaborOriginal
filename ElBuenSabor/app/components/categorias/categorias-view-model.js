@@ -62,6 +62,17 @@ ViewModel = new Observable({
         }
         this.set('listPlatos', listPlatos);
     },
+    limpiarPedidos: function () {
+        var listPlatos = [];
+        for (var i = 0; i < this.listPlatos.length; ++i) {
+            this.listPlatos[i].cantidad = 0;
+            listPlatos.push(this.listPlatos[i]);
+        }
+        this.set('listPlatos', listPlatos);
+        this.set('listPedidos', []);
+        this.set('total', 0);
+        this.set('cantidad', 0);
+    },
 });
 
 // START_CUSTOM_CODE_categorias
