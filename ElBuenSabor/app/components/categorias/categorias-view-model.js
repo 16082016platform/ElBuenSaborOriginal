@@ -11,7 +11,43 @@ ViewModel = new Observable({
     listItems: [],
     // additional properties
     listPlatos: [],
-    categoriaActiva: '',
+    isLinearActive: true,
+
+    cambiarCategoria: function (idCategoria) {
+        var listItems = [];
+        for (var i = 0; i < this.listItems.length; ++i) {
+            this.listItems[i].details.Id == idCategoria ? this.listItems[i].isActivo = true : this.listItems[i].isActivo = false;
+            listItems.push(this.listItems[i]);
+        }
+
+        this.set('listItems', listItems);
+        this.cambiarListaPlatos(idCategoria);
+
+    },
+    cambiarListaPlatos: function (idCategoria) {
+        var listPlatos = [];
+        for (var i = 0; i < this.listPlatos.length; ++i) {
+            this.listPlatos[i].categoria == idCategoria ? this.listPlatos[i].isVisible = true : this.listPlatos[i].isVisible = false;
+            listPlatos.push(this.listPlatos[i]);
+        }
+        this.set('listPlatos', listPlatos);
+    },
+    aumentarCantidad: function (itemPlato) {
+        var listPlatos = [];
+        for (var i = 0; i < this.listPlatos.length; ++i) {
+            this.listPlatos[i].details.Id == itemPlato.details.Id ? this.listPlatos[i].cantidad += 1 : '';
+            listPlatos.push(this.listPlatos[i]);
+        }
+        this.set('listPlatos', listPlatos);
+    },
+    disminuirCantidad: function (itemPlato) {
+        var listPlatos = [];
+        for (var i = 0; i < this.listPlatos.length; ++i) {
+            this.listPlatos[i].details.Id == itemPlato.details.Id && this.listPlatos[i].cantidad>0 ? this.listPlatos[i].cantidad -= 1 : '';
+            listPlatos.push(this.listPlatos[i]);
+        }
+        this.set('listPlatos', listPlatos);
+    },
 });
 
 // START_CUSTOM_CODE_categorias

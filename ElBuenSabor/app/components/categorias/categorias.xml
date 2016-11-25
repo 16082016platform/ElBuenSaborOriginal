@@ -1,28 +1,33 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="categoriasScreen" cssClass="screen">
-    <Page.actionBar>
+    <!--<Page.actionBar>
         <widgets:action-bar />
+    </Page.actionBar>-->
+
+    <Page.actionBar>
+        <ActionBar title="Item layouts" automationText="ActionBar">
+            <NavigationButton icon="res://ic_back" tap="goBack" automationText="GoBack" />
+        </ActionBar>
     </Page.actionBar>
 
     <StackLayout>
 
-        <GridLayout rows="auto, *">
+        <GridLayout rows="auto, *, auto">
             <Repeater row="0" items="{{ listItems }}" cssClass="encabezados">
                 <Repeater.itemsLayout>
                     <StackLayout orientation="horizontal" />
                 </Repeater.itemsLayout>
                 <Repeater.itemTemplate>
-                    <Button text="{{ details.nombre }}" id="{{ 'categoria' + details.Id }}" tap="cambioCategoria" width="{{ width }}" cssClass="{{ activo? 'categoriaActiva' : '' }}" isEnabled="{{ !activo }}" />
+                    <Button text="{{ details.nombre }}" idCategoria="{{ details.Id }}" tap="cambiarCategoria" width="{{ width }}" isEnabled="{{ !isActivo }}" />
                 </Repeater.itemTemplate>
             </Repeater>
 
             <ListView row="1" items="{{ listPlatos }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>
                     <StackLayout>
-                        <GridLayout columns="*" cssClass="padded-label">
-
+                        <GridLayout columns="*"  cssClass="padded-label" visibility="{{ isVisible ? 'visible' : 'collapsed' }}">
 
                             <StackLayout col="2" cssClass="padded-label-stack">
-                                <Label col="0" text="{{ header }}" cssClass="title-label" textWrap="true" />
+                                <Label col="0" text="{{ header + cantidad }}" cssClass="title-label" textWrap="true" />
                             </StackLayout>
 
                         </GridLayout>
@@ -31,6 +36,15 @@
                 </ListView.itemTemplate>
             </ListView>
             <ActivityIndicator row="1" busy="{{ isLoading }}" />
+            <!-- will be seen as a footer -->
+            <GridLayout row="2" cssClass="footer">
+                <StackLayout tap="buttonForwardTap">
+                    <Label id="mensajePedidos" text="El carrito entá vacío"/>
+                    <Label  id="totalPedidos" text=" 0"/>
+                    <Label cssClass="flaticon-breakfast-delivery-service"></Label>
+                    <Label cssClass="flaticon-breakfast-delivery-service" ></Label>
+                </StackLayout>
+            </GridLayout>
         </GridLayout>
         <!-- additional view content -->
 

@@ -23,6 +23,11 @@ function onListViewItemTap(args) {
 
     var itemData = viewModel.get('listPlatos')[args.index];
 
+    viewModel.aumentarCantidad(itemData);
+
+    return;
+    var itemData = viewModel.get('listPlatos')[args.index];
+
     helpers.navigate({
         moduleName: 'components/platos/itemDetails/itemDetails',
         context: itemData.details
@@ -30,15 +35,19 @@ function onListViewItemTap(args) {
 }
 exports.onListViewItemTap = onListViewItemTap;
 
-function cargarPlatos() {
+function cargarPlatos(idCategoria) {
+    if (viewModel.get('listPlatos').length > 0) {
+        return;
+    }
 
     viewModel.set('isLoading', true);
     viewModel.set('listPlatos', []);
 
     function _fetchData() {
-        return servicePlatos.getAllRecords({
-            categoria: viewModel.get('categoriaActiva')
-        });
+        // return servicePlatos.getAllRecords({
+        //     categoria: viewModel.get('categoriaActiva')
+        // });
+        return servicePlatos.getAllRecords();
     };
 
     _fetchData()
@@ -54,10 +63,15 @@ function cargarPlatos() {
                     header: item.nombre,
 
                     // singleItem properties
-                    details: item
+                    details: item,
+
+                    isVisible: idCategoria == item.categoria ? true : false,
+
+                    categoria: item.categoria,
+
+                    cantidad: 0,
                 });
             });
-
             viewModel.set('listPlatos', itemsList);
             viewModel.set('isLoading', false);
         })
@@ -89,20 +103,21 @@ function flattenLocationProperties(dataItem) {
 
 function pageLoaded(args) {
     var page = args.object;
-
     helpers.platformInit(page);
     page.bindingContext = viewModel;
+
+    if (viewModel.get('listItems').length > 0) {
+        return;
+    }
 
     viewModel.set('isLoading', true);
     viewModel.set('listItems', []);
 
     function _fetchData() {
         var context = page.navigationContext;
-
         if (context && context.filter) {
             return service.getAllRecords(context.filter);
         }
-
         return service.getAllRecords();
     };
 
@@ -124,12 +139,13 @@ function pageLoaded(args) {
 
                     width: width,
 
-                    activo: false
+                    isActivo: false
                 });
             });
 
-            itemsList[0].activo = true;
-            viewModel.set('categoriaActiva', itemsList[0].details.Id);
+            itemsList[0].isActivo = true;
+
+            cargarPlatos(itemsList[0].details.Id);
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);
@@ -139,24 +155,28 @@ function pageLoaded(args) {
         });
     // additional pageLoaded
 
-    //   35d3eb60-ac2f-11e6-bbe3-2b75d1374b2d
-
 
     if (isInit) {
         isInit = false;
 
         // additional pageInit
 
-        var timer = require("timer");
-        let id = timer.setInterval(() => {
-            cargarPlatos();
-            timer.clearInterval(id);
-        }, 1500);
+        // var timer = require("timer");
+        // let id = timer.setInterval(() => {
+        //     cargarPlatos();
+        //     timer.clearInterval(id);
+        // }, 1500);
     }
 }
+exports.pageLoaded = pageLoaded;
 
 // START_CUSTOM_CODE_categorias
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
 // END_CUSTOM_CODE_categorias
-exports.pageLoaded = pageLoaded;
+
+function cambiarCategoria(args) {
+    var page = args.object;
+    viewModel.cambiarCategoria(page.idCategoria);
+}
+exports.cambiarCategoria = cambiarCategoria;
