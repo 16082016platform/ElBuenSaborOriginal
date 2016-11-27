@@ -207,7 +207,23 @@
           "detailExtraFields": [],
           "addScreenExtraFields": [],
           "editScreenExtraFields": [],
-          "components": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "cantidad",
+                  "title": "Heading",
+                  "inputType": "heading",
+                  "headingSize": "h1",
+                  "dataBindingOptional": "estado"
+                }
+              ],
+              "name": "editableListForm16",
+              "formType": "detail"
+            }
+          ],
           "name": "historialModel",
           "dataProvider": "elBuenSabor",
           "collection": "pedidos",
@@ -219,7 +235,9 @@
           "pullToRefresh": false,
           "endlessScroll": false,
           "detailHeaderFieldSource": "static",
-          "detailHeaderFieldValue": "Detail"
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "codigo",
+          "detailDescriptionField": "cantidad"
         }
       ],
       "title": "Historial",

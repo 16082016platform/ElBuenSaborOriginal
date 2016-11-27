@@ -9,18 +9,25 @@ var isInit = true,
     viewModel = require('./historial-view-model');
 
 function onListViewItemTap(args) {
+    var aaa = new Date();
+    viewModel.set('listPedido', aaa);
     var itemData = viewModel.get('listItems')[args.index];
 
-    helpers.navigate({
-        moduleName: 'components/historial/itemDetails/itemDetails',
-        context: itemData.details
-    });
+    if (itemData.estado == 'llegando') {
+        helpers.navigate({
+            moduleName: 'components/historial/itemDetails/itemDetails',
+            context: itemData.details
+        });
+    } else {
+        viewModel.set('listEntregados', itemData.pedido);
+        viewModel.toggleAcordeon(itemData.details.Id);
+    }
 }
 exports.onListViewItemTap = onListViewItemTap;
 
 function flattenLocationProperties(dataItem) {
     var propName, propValue,
-        isLocation = function(value) {
+        isLocation = function (value) {
             return propValue && typeof propValue === 'object' &&
                 propValue.longitude && propValue.latitude;
         };
@@ -58,21 +65,34 @@ function pageLoaded(args) {
     };
 
     _fetchData()
-        .then(function(result) {
+        .then(function (result) {
             var itemsList = [];
 
-            result.forEach(function(item) {
+            result.forEach(function (item) {
 
                 flattenLocationProperties(item);
 
                 itemsList.push({
 
-                    header: item.codigo,
+                    codigo: item.codigo,
 
+                    total: item.total,
+                    
+                    estado: item.estado,
+
+                    CreatedAt: formatTime(item.CreatedAt),
+
+                    isActivo: false,
+
+                    pedido: item.pedido,
                     // singleItem properties
                     details: item
                 });
             });
+
+            itemsList.sort(function (a, b) {
+                return (b.codigo - a.codigo)
+            })
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);
@@ -94,3 +114,10 @@ function pageLoaded(args) {
 
 // END_CUSTOM_CODE_historial
 exports.pageLoaded = pageLoaded;
+
+
+function formatTime(time) {
+    var hour = time.getHours();
+    var min = time.getMinutes() + "";
+    return time.toDateString() + "  -  " + (hour <= 12 ? hour : hour - 12) + ":" + (min.length === 1 ? '0' + min : min) + (hour < 12 ? " am" : " pm");
+}

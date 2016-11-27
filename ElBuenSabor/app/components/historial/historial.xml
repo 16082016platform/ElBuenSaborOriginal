@@ -6,19 +6,25 @@
     <StackLayout>
 
         <GridLayout rows="auto, *">
-
             <ListView row="1" items="{{ listItems }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>
                     <StackLayout>
-                        <GridLayout columns="*" cssClass="padded-label">
-
-
-                            <StackLayout col="2" cssClass="padded-label-stack">
-                                <Label col="0" text="{{ header }}" cssClass="title-label" textWrap="true" />
-                            </StackLayout>
-
+                        <GridLayout columns="*,2*" cssClass="padded-label">
+                            <Label col="0" text="{{ 'Pedido: ' + codigo }}" cssClass="title-label" textWrap="true" />
+                            <Label col="1" text="{{ 'S/ ' + total }}" cssClass="title-label" textWrap="true" horizontalAlignment="right"/>
                         </GridLayout>
-                        <!-- additional view content -->
+                        <GridLayout columns="3*,*" cssClass="padded-label">
+                            <Label col="0" text="{{ CreatedAt }}" cssClass="title-label" textWrap="true" />
+                            <Label col="1" text="{{ estado == 'pendiente'? '/' : 'X' }}" cssClass="title-label" textWrap="true" horizontalAlignment="right"/>
+                        </GridLayout>
+                        <GridLayout columns="3*,*" cssClass="padded-label">
+                            <Label col="0" text="{{ estado }}" cssClass="title-label" textWrap="true"  visibility="{{ isActivo ? 'visible' : 'collapsed' }}"/>
+                            <Label col="1" text="{{ estado == 'pendiente'? '/' : 'X' }}" cssClass="title-label" textWrap="true" horizontalAlignment="right" visibility="{{ isActivo ? 'visible' : 'collapsed' }}"/>
+                        </GridLayout>
+                        <GridLayout columns="2*,*" cssClass="padded-label">
+                            <label col="0" style="color:red;"  text="{{ listPedido }}" />
+                            <label col="1" style="color:green;"  text="{{ listPedido }}" />
+                        </GridLayout>                        
                     </StackLayout>
                 </ListView.itemTemplate>
             </ListView>

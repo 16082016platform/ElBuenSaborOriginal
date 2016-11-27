@@ -10,7 +10,16 @@ ViewModel = new Observable({
     isLoading: false,
     listItems: [],
     // additional properties
+    listEntregados: [],
 
+    toggleAcordeon: function (idPedido) {
+        var listItems = [];
+        for (var i = 0; i < this.listItems.length; ++i) {
+            this.listItems[i].details.Id == idPedido ? this.listItems[i].isActivo = true : this.listItems[i].isActivo = false;
+            listItems.push(this.listItems[i]);
+        }
+        this.set('listItems', listItems);
+    }
 });
 
 // START_CUSTOM_CODE_historial
