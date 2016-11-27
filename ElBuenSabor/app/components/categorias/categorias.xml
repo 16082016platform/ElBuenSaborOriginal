@@ -1,13 +1,13 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:widgets="utils/widgets" loaded="pageLoaded" id="categoriasScreen" cssClass="screen">
-    <!--<Page.actionBar>
-        <widgets:action-bar />
-    </Page.actionBar>-->
-
     <Page.actionBar>
+        <widgets:action-bar />
+    </Page.actionBar>
+
+    <!--<Page.actionBar>
         <ActionBar title="Categorías" automationText="ActionBar">
             <NavigationButton icon="res://ic_back" tap="goBack" automationText="GoBack" />
         </ActionBar>
-    </Page.actionBar>
+    </Page.actionBar>-->
 
     <StackLayout>
 

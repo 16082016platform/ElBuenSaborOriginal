@@ -5,7 +5,7 @@ var ViewModel,
 
 ViewModel = new Observable({
 
-    pageTitle: 'Home View',
+    pageTitle: 'Login',
 
     signinVisibility: 'visible',
     registerVisibility: 'collapsed',
