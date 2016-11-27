@@ -243,6 +243,235 @@
       "title": "Historial",
       "addToNavigation": true,
       "icon": "recents"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "direcciones",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSorting": false,
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "direccionAdd",
+                  "title": "Dirección",
+                  "inputType": "text",
+                  "titlePosition": "top",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "direccion"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "numero",
+                  "title": "Número",
+                  "inputType": "text",
+                  "titlePosition": "left",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "numero"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "referecia",
+                  "title": "Referencia",
+                  "inputType": "textArea",
+                  "wideFieldTitlePosition": "top",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "referencia"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "activo",
+                  "title": "Activo",
+                  "inputType": "switch",
+                  "dataBinding": "activo"
+                }
+              ],
+              "name": "editableListForm20",
+              "formType": "add"
+            },
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "direccionEdit",
+                  "title": "Direccion",
+                  "inputType": "text",
+                  "titlePosition": "top",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "direccion"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "numero",
+                  "title": "Número",
+                  "inputType": "text",
+                  "titlePosition": "left",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "numero"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "referencia",
+                  "title": "Referencia",
+                  "inputType": "textArea",
+                  "wideFieldTitlePosition": "top",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "referencia"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "activo",
+                  "title": "Activo",
+                  "inputType": "switch",
+                  "dataBinding": "activo"
+                }
+              ],
+              "name": "editableListForm21",
+              "formType": "edit"
+            }
+          ],
+          "name": "direccionesModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "direcciones",
+          "headerField": "direccion",
+          "subHeaderField": "referencia",
+          "isMapView": false,
+          "addItemForm": true,
+          "addScreenHeaderValue": "Create",
+          "editItemForm": true,
+          "editScreenHeaderSource": "static",
+          "editScreenHeaderValue": "Edit",
+          "deleteItemButton": true,
+          "deleteItemConfirmation": true,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "DeletedAt",
+          "detailDescriptionField": "referencia"
+        }
+      ],
+      "title": "Direcciones",
+      "addToNavigation": true,
+      "icon": "featured"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "sugerencias",
+      "components": [
+        {
+          "type": "NativeScript:editableList",
+          "serverSideSorting": false,
+          "serverSidePaging": false,
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "addScreenExtraFields": [],
+          "editScreenExtraFields": [],
+          "components": [
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "sugerencia",
+                  "title": "Sugerencia",
+                  "inputType": "textArea",
+                  "wideFieldTitlePosition": "top",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "sugerencia"
+                },
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "puntuacion",
+                  "title": "Puntuación",
+                  "inputType": "text",
+                  "titlePosition": "left",
+                  "inputTextType": "text",
+                  "placeholder": "Type here ...",
+                  "dataBinding": "puntuacion"
+                }
+              ],
+              "name": "editableListForm38",
+              "formType": "add"
+            },
+            {
+              "type": "NativeScript:editableListForm",
+              "components": [
+                {
+                  "type": "NativeScript:editableListFormField",
+                  "name": "sugerencia",
+                  "title": "Heading",
+                  "inputType": "heading",
+                  "headingSize": "h1",
+                  "dataBindingOptional": "sugerencia"
+                }
+              ],
+              "name": "editableListForm42",
+              "formType": "detail"
+            }
+          ],
+          "name": "sugerenciasModel",
+          "dataProvider": "elBuenSabor",
+          "collection": "sugerencias",
+          "headerField": "sugerencia",
+          "subHeaderField": "puntuacion",
+          "isMapView": false,
+          "addItemForm": true,
+          "addScreenHeaderValue": "Sugerencia",
+          "editItemForm": false,
+          "deleteItemButton": true,
+          "deleteItemConfirmation": true,
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "detailSubHeaderField": "sugerencia",
+          "detailDescriptionField": "respuesta"
+        }
+      ],
+      "title": "Sugerencias",
+      "addToNavigation": true,
+      "icon": "edit"
+    },
+    {
+      "type": "NativeScript:view",
+      "name": "nosotros",
+      "components": [
+        {
+          "type": "NativeScript:about",
+          "name": "nosotrosModel",
+          "appName": "El buen Sabor",
+          "appVersion": "Version 1",
+          "appIcon": "chef.png",
+          "appDescription": "The maximum image size is 2.0MB. If the uploaded image does not display in the simulator after you apply your changes, wait a few seconds and refresh the simulator.\n\nThe maximum image size is 2.0MB. If the uploaded image does not display in the simulator after you apply your changes, wait a few seconds and refresh the simulator.\n\nThe maximum image size is 2.0MB. If the uploaded image does not display in the simulator after you apply your changes, wait a few seconds and refresh the simulator.\n\nThe maximum image size is 2.0MB. If the uploaded image does not display in the simulator after you apply your changes, wait a few seconds and refresh the simulator.",
+          "contactButton": true,
+          "contactLabel": "Contactanos",
+          "contactMail": "vemalavers@unc.edu.pe",
+          "facebookButton": true,
+          "facebookLabel": "Like us on Facebook",
+          "facebookLink": "https://www.facebook.com/Telerik",
+          "twitterButton": true,
+          "twitterLabel": "Follow us on Twitter",
+          "twitterLink": "https://twitter.com/telerik"
+        }
+      ],
+      "title": "Nosotros",
+      "addToNavigation": true,
+      "icon": "info"
     }
   ],
   "dataProviders": [
