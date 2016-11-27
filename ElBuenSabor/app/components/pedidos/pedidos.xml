@@ -24,7 +24,7 @@
                         <GridLayout columns="*"  cssClass="padded-label">
 
                             <StackLayout cssClass="padded-label-stack">
-                                <Label text="{{ header + cantidad }}" cssClass="title-label" textWrap="true" />
+                                <Label text="{{ nombre + cantidad }}" cssClass="title-label" textWrap="true" />
                                 <Label text="{{ 'S/ ' + precio }}" cssClass="title-label" textWrap="true" />
                             </StackLayout>
 

@@ -63,10 +63,13 @@ function cargarPlatos(idCategoria) {
 
                 itemsList.push({
 
-                    header: item.nombre,
+                    details: item,
+                    
+                    Id: item.Id,
+
+                    nombre: item.nombre,
 
                     // singleItem properties
-                    details: item,
 
                     isVisible: idCategoria == item.categoria ? true : false,
 
@@ -137,7 +140,7 @@ function pageLoaded(args) {
 
                 itemsList.push({
 
-                    header: item.nombre,
+                    nombre: item.nombre,
 
                     // singleItem properties
                     details: item,

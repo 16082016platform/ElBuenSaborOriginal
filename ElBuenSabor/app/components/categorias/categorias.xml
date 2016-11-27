@@ -17,7 +17,7 @@
                     <StackLayout orientation="horizontal" />
                 </Repeater.itemsLayout>
                 <Repeater.itemTemplate>
-                    <Button text="{{ details.nombre }}" idCategoria="{{ details.Id }}" tap="cambiarCategoria" width="{{ width }}" isEnabled="{{ !isActivo }}" />
+                    <Button text="{{ nombre }}" idCategoria="{{ details.Id }}" tap="cambiarCategoria" width="{{ width }}" isEnabled="{{ !isActivo }}" />
                 </Repeater.itemTemplate>
             </Repeater>
 
@@ -27,7 +27,7 @@
                         <GridLayout columns="*"  cssClass="padded-label" visibility="{{ isVisible ? 'visible' : 'collapsed' }}">
 
                             <StackLayout col="2" cssClass="padded-label-stack">
-                                <Label col="0" text="{{ header + cantidad }}" cssClass="title-label" textWrap="true" />
+                                <Label col="0" text="{{ nombre + cantidad }}" cssClass="title-label" textWrap="true" />
                             </StackLayout>
 
                         </GridLayout>

@@ -39,11 +39,16 @@ ViewModel = new Observable({
         this.set('listPedidos', []);
 
         for (var i = 0; i < this.listPlatos.length; ++i) {
-            if (this.listPlatos[i].details.Id == itemPlato.details.Id) {
+            if (this.listPlatos[i].Id == itemPlato.Id) {
                 this.listPlatos[i].cantidad += 1;
             }
             if (this.listPlatos[i].cantidad > 0) {
-                this.listPedidos.push(this.listPlatos[i]);
+                var pedido = {};
+                pedido.Id = this.listPlatos[i].Id;
+                pedido.cantidad = this.listPlatos[i].cantidad;
+                pedido.precio = this.listPlatos[i].precio;
+                pedido.nombre = this.listPlatos[i].nombre;
+                this.listPedidos.push(pedido);
             }
             cantidad += this.listPlatos[i].cantidad;
             total += parseFloat(this.listPlatos[i].precio) * this.listPlatos[i].cantidad;

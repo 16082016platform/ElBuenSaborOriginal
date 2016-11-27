@@ -89,7 +89,7 @@ exports.confirmarPedidos = function confirmarPedidos() {
                     codigo: result.length + 1,
                     total: viewModel.get('total'),
                     cantidad: viewModel.get('cantidad'),
-                    estado: 'pendiente',
+                    estado: 'Pendiente',
                     pedido: viewModel.get('listPedidos'),
                     // save properties
                 })
