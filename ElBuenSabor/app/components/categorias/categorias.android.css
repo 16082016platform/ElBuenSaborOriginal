@@ -1,0 +1,17 @@
+Repeater {
+    background-color: #f86a44;
+    color: #fff;
+    font-style: italic;
+}
+Repeater Label{
+    text-align: center;
+}
+Repeater .categoriaActiva{
+    background-color: #fff;
+}
+.footer {
+    color: #fff;
+    background-color: #16a2b3;
+    font-style: italic;
+    font-weight: bold; 
+}

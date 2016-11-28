@@ -90,9 +90,9 @@ function pageLoaded(args) {
                 });
             });
 
-            itemsList.sort(function (a, b) {
-                return (b.codigo - a.codigo)
-            })
+            // itemsList.sort(function (a, b) {
+            //     return (b.codigo - a.codigo)
+            // })
 
             viewModel.set('listItems', itemsList);
             viewModel.set('isLoading', false);

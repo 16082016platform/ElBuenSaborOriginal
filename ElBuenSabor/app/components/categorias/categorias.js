@@ -201,13 +201,13 @@ function goToPedidos(args) {
     helpers.navigate({
         moduleName: 'components/pedidos/pedidos',
         transitioniOS: {
-            name: "curl",
-            duration: 1000,
+            name: "slideTop",
+            // duration: 1000,
             curve: "easeIn"
         },
         transitionAndroid: {
-            name: "explode",
-            duration: 1000,
+            name: "slideTop",
+            // duration: 1000,
             curve: "easeOut"
         }
     });

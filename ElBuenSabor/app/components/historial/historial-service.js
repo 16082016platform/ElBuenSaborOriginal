@@ -4,10 +4,12 @@ var _,
     _consts,
     dataService = require('../../dataProviders/elBuenSabor'),
     // additional requires
+    Everlive = require('../../everlive/everlive.all.min'),
 
     consts;
 
-function Service() {}
+
+function Service() { }
 
 function onRequestSuccess(data) {
     return data.result;
@@ -18,7 +20,15 @@ function onRequestFail(err) {
     return err;
 }
 
-Service.prototype.getAllRecords = function(filter) {
+Service.prototype.getAllRecords = function (filter) {
+
+    if (!filter) {
+        var filter = new Everlive.Query();
+        filter.orderDesc('CreatedAt');
+        filter.take(20);
+    }
+
+
     var expandExp,
         data = dataService.data('pedidos');
 

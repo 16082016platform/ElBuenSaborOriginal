@@ -11,17 +11,25 @@
 
     <StackLayout>
 
-        <GridLayout rows="auto, *, auto">
-            <Repeater row="0" items="{{ listItems }}" cssClass="encabezados">
+        <GridLayout rows="auto, auto, *, auto">
+            <Repeater row="0" items="{{ listItems }}">
                 <Repeater.itemsLayout>
-                    <StackLayout orientation="horizontal" />
+                    <StackLayout orientation="horizontal"/>
                 </Repeater.itemsLayout>
                 <Repeater.itemTemplate>
-                    <Button text="{{ nombre }}" idCategoria="{{ details.Id }}" tap="cambiarCategoria" width="{{ width }}" isEnabled="{{ !isActivo }}" />
+                    <label  text="{{ nombre }}" idCategoria="{{ details.Id }}" tap="cambiarCategoria" height="35" width="{{ width }}" isEnabled="{{ !isActivo }}"/>
+                </Repeater.itemTemplate>
+            </Repeater>
+            <Repeater row="1" items="{{ listItems }}">
+                <Repeater.itemsLayout>
+                    <StackLayout orientation="horizontal"/>
+                </Repeater.itemsLayout>
+                <Repeater.itemTemplate>
+                    <label width="{{ width }}" isEnabled="{{ !isActivo }}" height="5" cssClass="{{ isActivo? 'categoriaActiva' : '' }}" />
                 </Repeater.itemTemplate>
             </Repeater>
 
-            <ListView row="1" items="{{ listPlatos }}" itemTap="onListViewItemTap">
+            <ListView row="2" items="{{ listPlatos }}" itemTap="onListViewItemTap">
                 <ListView.itemTemplate>
                     <StackLayout>
                         <GridLayout columns="*"  cssClass="padded-label" visibility="{{ isVisible ? 'visible' : 'collapsed' }}">
@@ -36,13 +44,13 @@
                 </ListView.itemTemplate>
             </ListView>
             <!-- will be seen as a footer -->
-            <GridLayout row="2" cssClass="footer">
+            <GridLayout row="3" cssClass="footer">
                 <StackLayout tap="goToPedidos">
                     <Label id="mensajePedidos" text="{{ total > 0 ? 'TOTAL: S/ ' + total : 'El carrito entá vacío'  }}"/>
                     <Label  id="totalPedidos" text="{{ cantidad }}"/>
                 </StackLayout>
             </GridLayout>
-            <ActivityIndicator row="1" busy="{{ isLoading }}" />
+            <ActivityIndicator row="2" busy="{{ isLoading }}" />
         </GridLayout>
         <!-- additional view content -->
 
